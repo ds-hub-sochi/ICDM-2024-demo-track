@@ -1,7 +1,7 @@
-root = '/home/jovyan/murtazin/datasets/WLASL/wlasl_raw/videos'
+root = ''
 # Open the input CSV file for reading and a new CSV file for writing
-input_csv = '/home/jovyan/murtazin/datasets/WLASL/wlasl_kinetic_format/test.csv'
-output_csv = '/home/jovyan/murtazin/datasets/WLASL/maev1_format/test.csv'
+input_csv = ''
+output_csv = ''
 with open(input_csv, 'r') as input_file, open(output_csv, 'w') as output_file:
     # Iterate through each line in the input file
     for line in input_file:
