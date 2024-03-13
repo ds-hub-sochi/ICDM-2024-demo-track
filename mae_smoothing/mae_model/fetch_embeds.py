@@ -58,7 +58,7 @@ def get_args():
     # Finetuning params
     parser.add_argument(
         '--finetune',
-        default='/home/jovyan/people/milevich/rsl/slt_mae/data/pWLASLfWLASLfSLOVO.pt',
+        default='/slt_mae/data/pWLASLfWLASLfSLOVO.pt',
         help='finetune from checkpoint',
     )
     parser.add_argument('--model_key', default='model|module', type=str)
