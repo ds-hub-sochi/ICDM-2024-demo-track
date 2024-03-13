@@ -1,3 +1,18 @@
+Generally repo works the same as original one: https://github.com/MCG-NJU/VideoMAE
+
+Added changes in sampling, augmentation and created soft targeting for finetuning. To repeat expirements download nessesary files (smoothing soft targets, sl datasets and original Kinetics-400 MAE pretrain model)
+
+
+| Smoothing files |                                    |
+|-----------------|------------------------------------|
+| WLASL           | [Download](https://sc.link/BPmnu)  |
+| AUTSL           | [Download](https://sc.link/vxiV9)  |
+| GLS             | [Download](https://sc.link/rwHk0)  |
+| SLOVO           | [Download](https://sc.link/UjohL)  |
+
+
+
+
 
 ## 🔒 License
 
