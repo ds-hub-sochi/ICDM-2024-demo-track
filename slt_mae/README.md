@@ -1,39 +1,24 @@
-Generally repo works the same as original one: https://github.com/MCG-NJU/VideoMAE
+Generally repo works the same as original one: https://github.com/MCG-NJU/VideoMAE.  
+Our goal is to get a good pre-trained (Foundation) model, which can be easily fine-tuned for 
+various sign languages. Therefore, the experiment consists of two stages. At the first stage, 
+we train a pre-trained model (see [scripts/Pretrain](scripts/Pretrain)). During the second stage, 
+we perform fine-tuning on the [WLASL](scripts/WLASL), [AUTSL](scripts/AUTSL), [GSL](scripts/GSL), 
+and [Slovo](scripts/SLOVO) datasets to evaluate the model’s 
+effectiveness in processing downstream tasks. To train the pre-trained model, we utilized the YouTube-ASL dataset and trained a ViT 
+Large model on it adhering to the VideoMAE approach. Given that many videos from the YouTube-ASL 
+dataset are very long, we randomly sampled up to 100 fragments containing 100 frames 
+from each.
 
-Added changes in sampling, augmentation and created soft targeting for finetuning. To repeat expirements download nessesary files (smoothing soft targets, sl datasets and original Kinetics-400 MAE pretrain model)
+Changes in the original repository affect sampling, augmentation, and fine-tuning procedures. 
+
+To repeat experiments download necessary files (smoothing soft targets, sign languages datasets 
+and original Kinetics-400 MAE pre-train model)
 
 
-| Smoothing files |                                    |
-|-----------------|------------------------------------|
-| WLASL           | [Download](https://sc.link/BPmnu)  |
-| AUTSL           | [Download](https://sc.link/vxiV9)  |
-| GLS             | [Download](https://sc.link/rwHk0)  |
-| SLOVO           | [Download](https://sc.link/UjohL)  |
+| Sign language | Smoothing files                   |
+|---------------|-----------------------------------|
+| WLASL         | [Download](https://sc.link/BPmnu) |
+| AUTSL         | [Download](https://sc.link/vxiV9) |
+| GLS           | [Download](https://sc.link/rwHk0) |
+| SLOVO         | [Download](https://sc.link/UjohL) |
 
-
-
-
-
-## 🔒 License
-
-The majority of this project is released under the CC-BY-NC 4.0 license as found in the [LICENSE](https://github.com/MCG-NJU/VideoMAE/blob/main/LICENSE) file. Portions of the project are available under separate license terms: [SlowFast](https://github.com/facebookresearch/SlowFast) and [pytorch-image-models](https://github.com/rwightman/pytorch-image-models) are licensed under the Apache 2.0 license. [BEiT](https://github.com/microsoft/unilm/tree/master/beit) is licensed under the MIT license.
-
-## ✏️ Citation
-
-If you think this project is helpful, please feel free to leave a star⭐️ and cite our paper:
-
-```
-@inproceedings{tong2022videomae,
-  title={Video{MAE}: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training},
-  author={Zhan Tong and Yibing Song and Jue Wang and Limin Wang},
-  booktitle={Advances in Neural Information Processing Systems},
-  year={2022}
-}
-
-@article{videomae,
-  title={VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training},
-  author={Tong, Zhan and Song, Yibing and Wang, Jue and Wang, Limin},
-  journal={arXiv preprint arXiv:2203.12602},
-  year={2022}
-}
-```
