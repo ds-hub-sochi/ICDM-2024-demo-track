@@ -1,6 +1,6 @@
 OUTPUT_DIR=''
-ANNO_PATH=''
 DATA_PATH=''
+ANNO_PATH=''
 # path to pretrain model
 MODEL_PATH=''
 
@@ -24,17 +24,16 @@ OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
         --node_rank=${RANK} --master_addr=${MASTER_ADDR} \
     run_class_finetuning.py \
     --model vit_large_patch16_224 \
-    --data_set WLASL \
-    --nb_classes 2000 \
+    --data_set GSL \
+    --nb_classes 310 \
     --data_path ${DATA_PATH} \
     --anno_path ${ANNO_PATH} \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
     --output_dir ${OUTPUT_DIR} \
-    --spatial_idx -1 \
     --sampling_type circle \
-    --batch_size 7 \
-    --num_sample 3 \
+    --batch_size 2 \
+    --num_sample 2 \
     --input_size 224 \
     --short_side_size 224 \
     --num_frames 16 \

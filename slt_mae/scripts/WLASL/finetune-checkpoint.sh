@@ -1,9 +1,8 @@
-OUTPUT_DIR='/home/jovyan/murtazin/slt_mae/workdirs/test_run'
-# path to Kinetics set (train.csv/val.csv/test.csv)
-DATA_PATH='/home/jovyan/murtazin/datasets/WLASL/wlasl_raw/videos'
-ANNO_PATH='/home/jovyan/murtazin/datasets/WLASL/wlasl_kinetic_format_swap_val_test'
+OUTPUT_DIR=''
+ANNO_PATH=''
+DATA_PATH=''
 # path to pretrain model
-MODEL_PATH='/home/jovyan/murtazin/slt_mae/workdirs/videomae_pretrain_large_patch16_224_frame_16x4_tube_mask_ratio_0.9_e1659_fWLASL_label_smoothing_dima_aug/checkpoint-best/mp_rank_00_model_states.pt'
+MODEL_PATH=''
 
 # Check if directory exists. If not, it will create it
 if [ ! -d "$OUTPUT_DIR" ]; then
@@ -15,7 +14,7 @@ cp "$0" "$OUTPUT_DIR/"
 
 echo "The script has been copied to the ${OUTPUT_DIR} directory."
 
-# We add repeated_aug (--num_sample = 2) on Kinetics-400 here, 
+# We add repeated_aug (--num_sample = 2) on Kinetics-400 here,
 # which could better performance while need more time for fine-tuning
 
 # batch_size can be adjusted according to number of GPUs
@@ -41,7 +40,7 @@ OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
     --output_dir ${OUTPUT_DIR} \
-    --soft_targets '/home/jovyan/murtazin/slt_mae/ckpts/LS_rnd_smpl_betta_0.5_best_chkpt.npy' \
+    --soft_targets 'path_to_wlasl_softtargets' \
     --spatial_idx -1 \
     --sampling_type 'circle' \
     --batch_size 2 \

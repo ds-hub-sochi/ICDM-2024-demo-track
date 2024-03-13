@@ -22,10 +22,10 @@ export MASTER_PORT=${MASTER_PORT:-12323}  # You should set the same master_port 
 OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
         --master_port ${MASTER_PORT} --nnodes=${NODE_COUNT} \
         --node_rank=${RANK} --master_addr=${MASTER_ADDR} \
-    run_class_finetuning.py \
+     run_class_finetuning.py \
     --model vit_large_patch16_224 \
-    --data_set WLASL \
-    --nb_classes 2000 \
+    --data_set SLOVO \
+    --nb_classes 1001 \
     --data_path ${DATA_PATH} \
     --anno_path ${ANNO_PATH} \
     --finetune ${MODEL_PATH} \
@@ -33,7 +33,7 @@ OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
     --output_dir ${OUTPUT_DIR} \
     --spatial_idx -1 \
     --sampling_type circle \
-    --batch_size 7 \
+    --batch_size 2 \
     --num_sample 3 \
     --input_size 224 \
     --short_side_size 224 \

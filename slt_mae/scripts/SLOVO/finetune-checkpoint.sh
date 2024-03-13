@@ -4,7 +4,16 @@ DATA_PATH=''
 # path to pretrain model
 MODEL_PATH=''
 
-# Check if directory exists. If not, it will create i
+# Check if directory exists. If not, it will create it
+if [ ! -d "$OUTPUT_DIR" ]; then
+  mkdir "$OUTPUT_DIR"
+fi
+
+# Copy the script into the output directory
+cp "$0" "$OUTPUT_DIR/"
+
+echo "The script has been copied to the ${OUTPUT_DIR} directory."
+
 # We add repeated_aug (--num_sample = 2) on Kinetics-400 here,
 # which could better performance while need more time for fine-tuning
 
@@ -16,7 +25,7 @@ SRUN_ARGS=${SRUN_ARGS:-""}  # Other slurm task args
 PY_ARGS=${@:3}  # Other training args
 RANK=0
 MASTER_ADDR=127.0.0.1
-export MASTER_PORT=${MASTER_PORT:-12323}  # You should set the same master_port in all the nodes
+export MASTER_PORT=${MASTER_PORT:-12321}  # You should set the same master_port in all the nodes
 
 # train on 32 V100 GPUs (4 nodes x 8 GPUs)
 OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
@@ -24,23 +33,28 @@ OMP_NUM_THREADS=1 python3 -m torch.distributed.launch --nproc_per_node=${GPUS} \
         --node_rank=${RANK} --master_addr=${MASTER_ADDR} \
     run_class_finetuning.py \
     --model vit_large_patch16_224 \
-    --data_set WLASL \
-    --nb_classes 2000 \
+    --data_set SLOVO \
+    --nb_classes 1001 \
     --data_path ${DATA_PATH} \
     --anno_path ${ANNO_PATH} \
     --finetune ${MODEL_PATH} \
     --log_dir ${OUTPUT_DIR} \
     --output_dir ${OUTPUT_DIR} \
     --spatial_idx -1 \
-    --sampling_type circle \
-    --batch_size 7 \
-    --num_sample 3 \
+    --sampling_type 'circle' \
+    --batch_size 2 \
+    --num_sample 2 \
     --input_size 224 \
     --short_side_size 224 \
+    --save_ckpt_freq 20 \
     --num_frames 16 \
     --sampling_rate 4 \
+    --opt adamw \
+    --lr 1e-3 \
+    --opt_betas 0.9 0.999 \
+    --weight_decay 0.05 \
+    --epochs 100 \
     --dist_eval \
-    --test_num_segment 5 \
+    --test_num_segment 2 \
     --test_num_crop 3 \
-    --eval
-
+    --enable_deepspeed
