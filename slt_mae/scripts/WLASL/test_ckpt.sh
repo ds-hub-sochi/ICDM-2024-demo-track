@@ -1,12 +1,11 @@
-OUTPUT_DIR='/home/jovyan/murtazin/slt_mae/workdirs/videomae_pretrain_large_patch16_224_ckpt1199_fSLOVO'
-# path to Kinetics set (train.csv/val.csv/test.csv)
-DATA_PATH='/home/jovyan/murtazin/datasets/WLASL/wlasl_raw/videos'
-ANNO_PATH='/home/jovyan/murtazin/datasets/WLASL/wlasl_kinetic_format'
+OUTPUT_DIR=''
+ANNO_PATH=''
+DATA_PATH=''
 # path to pretrain model
-MODEL_PATH='/home/jovyan/murtazin/slt_mae/workdirs/videomae_pretrain_large_patch16_224_frame_16x4_tube_mask_ratio_0.9_e1659_fWLASL_lb_v1/checkpoint-best/mp_rank_00_model_states.pt'
+MODEL_PATH=''
 
 # Check if directory exists. If not, it will create i
-# We add repeated_aug (--num_sample = 2) on Kinetics-400 here, 
+# We add repeated_aug (--num_sample = 2) on Kinetics-400 here,
 # which could better performance while need more time for fine-tuning
 
 # batch_size can be adjusted according to number of GPUs
