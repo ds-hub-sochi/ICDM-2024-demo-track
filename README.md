@@ -1,5 +1,7 @@
-# eccv_slt_mae
-This repository provides the code for our paper at ECCV2024 - "One ‘Pre-Train’ to Fit Them All".  
+# ICDM 2024 (demo track)
+This repository provides the code for our paper at ICDM 2024 (demo track) - "Video-based learning of sign languages: one
+
+pre-train to fit them all".  
 
 The paper introduces an approach for training a Foundation model capable of obtaining high-quality 
 embeddings for sign languages.  Experiments have shown that the model can be quickly and
